@@ -52,7 +52,7 @@ class Route {
 		if(file_exists($controller_path)) 
 				include_once $controller_path;
 			else
-				header("Location: ../404");
+				$this->Error("404");
 		
 		$controller 		= new $this->controller_name;
 		$action 		= $this->action_name;
@@ -60,7 +60,7 @@ class Route {
 		if(method_exists($controller, $action))
 				$controller->$action();
 			else
-				header("Location: ../404");
+				$this->Error("404");
 	}
 	function HandleGETData($routes){
 		unset($routes[0]);
@@ -76,6 +76,24 @@ class Route {
 			} else 
 				$_GET[$key] = "";
 		}
+	}
+	public function Error($error){
+		$controller_file 	= 'Error.php';
+		$controller_path 	= ENGINE_PATH_MVC.'controllers/'.$controller_file;
+
+		if(file_exists($controller_path)){
+			include_once($controller_path);
+		} else exit();
+
+		$model_file 	= $controller_file;
+		$model_path 	= ENGINE_PATH_MVC.'models/'.$model_file;
+		if(file_exists($model_path)){
+			include($model_path);
+		} else exit();
+
+		$controller 	= new Controller_Error;
+		$action 		= $error;
+		$controller->$action();
 	}
 }
 
