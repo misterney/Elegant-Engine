@@ -38,7 +38,7 @@
  	Debug::chrono();
 
 	//Функция отладки: Включение: E_ALL. Отключение: false
-	Debug::reporting( E_ALL );
+	Debug::reporting(false);
 
 	$Route = new Route();
 	$Route->Run();
