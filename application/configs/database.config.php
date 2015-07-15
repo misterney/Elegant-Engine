@@ -1,12 +1,12 @@
 <?
 return $array = [
-	"driver" 	=> "pdo",
-	"host" 	=> "localhost",
-	"user" 	=> "elegant",
-	"pass" 	=> "L55f3T2ja7LaZjjV",
-	"base" 	=> "elegant",
+	"driver" 	=> "",
+	"host" 	=> "",
+	"user" 	=> "",
+	"pass" 	=> "",
+	"base" 	=> "",
 	"port" 	=> "",
-	"charset" 	=> "utf8",
+	"charset" => "utf8",
 
 
 
