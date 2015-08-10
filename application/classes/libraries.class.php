@@ -12,8 +12,25 @@ class Libraries {
 		return self::$_instanse;
 	}
 	public function load($name){
-		$file = ENGINE_PATH_LIBRARIES.$name.'.class.php';
-		$library = include_once($file);
-		return $library;
+		if(preg_match('/\//', $name)) $name = explode('/', $name);
+
+		if($name[0] == "system"){
+			$name = implode('/', $name);
+			$file = VENDOR_LIBRARIES.$name.'.library.php';
+			if(file_exists($file)){
+				$library = include_once($file);
+				return $library;
+			} else {
+				Debug::log('Отсутствует подключаемая библиотека: '. $name);
+			}
+		} else {
+			$file = VENDOR_LIBRARIES.$name.'.library.php';
+			if(file_exists($file)){
+				$library = include_once($file);
+				return $library;
+			} else {
+				Debug::log('Отсутствует подключаемая библиотека: '. $name);
+			}
+		}
 	}
 } 
